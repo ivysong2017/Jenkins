@@ -14,6 +14,9 @@ pipeline {
         sh 'python --version'
       }
     }
+    stage('check'){
+      input "Does the staging environment look ok?"
+    }
     stage('post') {
       steps {
         sh 'echo ${DB_ENGINE}'
