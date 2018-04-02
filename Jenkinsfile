@@ -15,7 +15,9 @@ pipeline {
       }
     }
     stage('check'){
-      input "Does the staging environment look ok?"
+      steps {
+        input "Does the staging environment look ok?"
+      }
     }
     stage('post') {
       steps {
