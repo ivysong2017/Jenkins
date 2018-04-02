@@ -5,6 +5,9 @@ pipeline {
     }
     
   }
+  environment{
+    DB_ENGINE = 'mysql'
+  }
   stages {
     stage('build') {
       steps {
@@ -13,6 +16,7 @@ pipeline {
     }
     stage('post') {
       steps {
+        sh 'echo DB_ENGINE'
         sh 'echo "hello, jenkins"'
       }
     }
