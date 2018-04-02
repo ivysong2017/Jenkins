@@ -16,7 +16,7 @@ pipeline {
     }
     stage('post') {
       steps {
-        sh 'echo DB_ENGINE'
+        sh 'echo ${env.DB_ENGINE}'
         sh 'echo "hello, jenkins"'
       }
     }
