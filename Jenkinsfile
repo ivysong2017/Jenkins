@@ -11,5 +11,10 @@ pipeline {
         sh 'python -version'
       }
     }
+    stage('post') {
+      steps {
+        sh 'echo "hello, jenkins"'
+      }
+    }
   }
 }
