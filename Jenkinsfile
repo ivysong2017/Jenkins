@@ -21,7 +21,7 @@ pipeline{
 				
 				script{
 					if(env.BRANCH_NAME == 'master'){
-						echo "I am in the master branch".
+						echo "I am in the master branch"
 					}else{
 						echo "I am in the branch ${env.BRANCH_NAME} "
 					}
