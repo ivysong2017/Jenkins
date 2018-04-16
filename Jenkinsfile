@@ -17,6 +17,7 @@ pipeline{
 		
 		stage('Branch Check'){
 			steps{
+				sh 'echo "start branch check....."'
 				if(env.BRANCH_NAME == 'master'){
 					sh 'echo "I am in the master branch".'
 				}else{
