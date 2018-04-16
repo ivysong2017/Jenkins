@@ -1,8 +1,19 @@
 pipeline{
-	agent{ docker {image 'python:3.5.1'}}
+	agent any
 	stages{
-		stage('build'){
-			steps{ sh 'python -version'}
+		stage('Example'){
+			echo 'Hello World'
+			
+			script{
+				def browsers = ['chrome','firefox']
+				for(int i = 0; i < browsers.size(); i++){
+					echo "Testing the ${browsers[i]} browser"
+				}
+			}
+		}
+		
+		stage('Build'){
+			echo 'building phase....'
 		}
 	}
 }
