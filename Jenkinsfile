@@ -2,18 +2,18 @@ pipeline{
 	agent any
 	stages{
 		stage('Example'){
-			echo 'Hello World'
+			sh 'echo "Hello World"'
 			
 			script{
 				def browsers = ['chrome','firefox']
 				for(int i = 0; i < browsers.size(); i++){
-					echo "Testing the ${browsers[i]} browser"
+					sh 'echo "Testing the ${browsers[i]} browser"'
 				}
 			}
 		}
 		
 		stage('Build'){
-			echo 'building phase....'
+			sh 'echo "building phase...."'
 		}
 	}
 }
