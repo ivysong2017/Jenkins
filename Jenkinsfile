@@ -9,7 +9,7 @@ pipeline{
 					def browsers = ['chrome','firefox']
 					//sh 'echo "browser size: ${browsers.size()}"'
 					for(int i = 0; i < browsers.size(); ++i){
-						sh 'echo "Testing the ${browsers[i]} browser"'
+						echo "Testing the ${browsers[i]} browser"
 					}
 				}
 			}
@@ -21,9 +21,9 @@ pipeline{
 				
 				script{
 					if(env.BRANCH_NAME == 'master'){
-						sh 'echo "I am in the master branch".'
+						echo "I am in the master branch".
 					}else{
-						sh 'echo "I am in the branch ${env.BRANCH_NAME} "'
+						echo "I am in the branch ${env.BRANCH_NAME} "
 					}
 				}
 				//sh 'echo "building phase...."'
