@@ -1,5 +1,9 @@
 pipeline{
 	agent any
+	environment{
+		DB_ENGINE = 'my sql'
+		DISABLE_AUTH = 'true'
+	}
 	stages{
 		stage('Example'){
 			steps{
@@ -18,6 +22,7 @@ pipeline{
 		stage('Branch Check'){
 			steps{
 				sh 'echo "start branch check....."'
+				sh 'printenv'
 				
 				script{
 					if(env.BRANCH_NAME == 'master'){
