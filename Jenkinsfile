@@ -1,10 +1,10 @@
 pipeline {
-  agent {
+  //agent {
     //docker {
       //image 'python:3.5.1'
     //}
     
-  }
+  //}
   environment{
     DB_ENGINE = 'mysql'
   }
