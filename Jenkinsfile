@@ -16,6 +16,11 @@ pipeline {
     stage('Test'){
       steps {
         sh 'echo "Test...."'
+        script{
+          withcredentials([string(credentialsId:"DB_PASSWORD", variable:"DBPASSWD")]){
+            echo "db passwd: ${DBPASSWD}"
+          }
+        }
       }
     }
     stage('Deploy') {
