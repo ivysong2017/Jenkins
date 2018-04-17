@@ -17,7 +17,7 @@ pipeline {
       steps {
         sh 'echo "Test...."'
         script{
-          withcredentials([string(credentialsId:"DB_PASSWORD", variable:"DBPASSWD")]){
+          withCredentials([string(credentialsId:"DB_PASSWORD", variable:"DBPASSWD")]){
             echo "db passwd: ${DBPASSWD}"
           }
         }
