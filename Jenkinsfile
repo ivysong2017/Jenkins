@@ -1,29 +1,23 @@
 pipeline {
-  agent {
-    docker {
-      image 'python:3.5.1'
-    }
-    
-  }
+  agent any
   environment{
     DB_ENGINE = 'mysql'
   }
   stages {
-    stage('build') {
+    stage('Build') {
       steps {
-        //sh 'python --version'
-        sh 'echo "build...."'
+        sh 'echo "Build...."'
       }
     }
-    stage('check'){
+    stage('Test'){
       steps {
-        input "Does the staging environment look ok?"
+        sh 'echo "Test...."'
       }
     }
-    stage('post') {
+    stage('Deploy') {
       steps {
         sh 'echo ${DB_ENGINE}'
-        sh 'echo "hello, jenkins"'
+        sh 'echo "Deploy...."'
       }
     }
   }
