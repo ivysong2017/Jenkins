@@ -1,23 +1,26 @@
 pipeline {
-  agent {
-    docker {
-      image 'python:3.5.1'
-    }
-    
-  }
+  agent any
   environment{
     DB_ENGINE = 'mysql'
   }
   stages {
-    stage('build') {
+    stage('Back-end') {
+      agent {
+        docker { image 'maven:3-alpine' }
+      }
       steps {
         //sh 'python --version'
-        sh 'echo "build...."'
+        sh 'echo "Back-end..."'
+        sh 'mvn --version'
       }
     }
-    stage('check'){
+    stage('Front-end'){
+      agent {
+        docker { image 'node:7-alpine' }
+      }
       steps {
-        input "Does the staging environment look ok?"
+        sh 'echo "Front-end..."'
+        sh 'node --version'
       }
     }
     stage('post') {
