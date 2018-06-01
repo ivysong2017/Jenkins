@@ -10,8 +10,10 @@ pipeline {
         sh 'echo "Build...."'
         script{
           //echo "db password: ${env.DBPASSWORD}"
-          sh 'cd /home/jenkins/onboardingui'
-          sh './downloadsrccode.sh'
+          sh '''
+          cd /home/jenkins/onboardingui
+          bash -x downloadsrccode.sh
+          '''
         }
       }
     }
@@ -23,8 +25,10 @@ pipeline {
             echo "db passwd: ${DBPASSWD}"
           }
           
-          sh 'cd /home/jenkins/onboardingui'
-          sh 'docker build -f SeleniumTestDockerfile .'
+          sh '''
+          cd /home/jenkins/onboardingui
+          docker build -f SeleniumTestDockerfile .
+          '''
         }
       }
     }
