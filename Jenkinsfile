@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent{
+    dockerfile{
+      //the -v argument is to make docker inside docker container have enough privilege to run
+      args '-u root:root -v "/var/run/docker.sock:/var/run/docker.sock:rw"'
+    }
+  }
   environment{
     DB_ENGINE = 'mysql'
     DBPASSWORD=credentials('DB_PASSWORD')
