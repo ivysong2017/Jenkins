@@ -1,30 +1,45 @@
 pipeline {
-  agent {
-    docker {
-      image 'python:3.5.1'
-    }
-    
-  }
+  agent any
   environment{
     DB_ENGINE = 'mysql'
+    DBPASSWORD=credentials('DB_PASSWORD')
   }
   stages {
-    stage('build') {
+    stage('Build') {
       steps {
-        //sh 'python --version'
-        sh 'echo "build...."'
+        sh 'echo "Build...."'
+        script{
+          #echo "db password: ${env.DBPASSWORD}"
+          sh 'cd /home/jenkins/onboardingui'
+          sh './downloadsrccode.sh'
+        }
       }
     }
-    stage('check'){
+    stage('Test'){
       steps {
-        input "Does the staging environment look ok?"
+        sh 'echo "Test...."'
+        script{
+          withCredentials([string(credentialsId:"DB_PASSWORD", variable:"DBPASSWD")]){
+            echo "db passwd: ${DBPASSWD}"
+          }
+          
+          sh 'cd /home/jenkins/onboardingui'
+          sh 'docker build -f SeleniumTestDockerfile .'
+        }
       }
     }
-    stage('post') {
+    stage('Deploy') {
       steps {
         sh 'echo ${DB_ENGINE}'
-        sh 'echo "hello, jenkins"'
+        sh 'echo "Deploy...."'
       }
     }
+    
+    post{
+      always{
+        junit '/home/jenkins/onboardingui/onboarding/*.xml'
+      }
+    }
+    
   }
 }
