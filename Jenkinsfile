@@ -1,10 +1,13 @@
 pipeline {
-  agent{
-    dockerfile{
-      //the -v argument is to make docker inside docker container have enough privilege to run
-      args '-u root:root -v "/var/run/docker.sock:/var/run/docker.sock:rw"'
-    }
-  }
+  //agent{
+  //  dockerfile{
+  //    //the -v argument is to make docker inside docker container have enough privilege to run
+  //    args '-u root:root -v "/var/run/docker.sock:/var/run/docker.sock:rw"'
+  //  }
+  //}
+  
+  agent any
+  
   environment{
     DB_ENGINE = 'mysql'
     DBPASSWORD=credentials('DB_PASSWORD')
@@ -32,7 +35,7 @@ pipeline {
           
           sh '''
           cd /home/jenkins/onboardingui
-          docker build -f SeleniumTestDockerfile .
+          docker build -f SeleniumTestDockerfile -u root:root -v "/var/run/docker.sock:/var/run/docker.sock:rw" .
           '''
         }
       }
