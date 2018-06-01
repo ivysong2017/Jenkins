@@ -9,7 +9,7 @@ pipeline {
       steps {
         sh 'echo "Build...."'
         script{
-          #echo "db password: ${env.DBPASSWORD}"
+          //echo "db password: ${env.DBPASSWORD}"
           sh 'cd /home/jenkins/onboardingui'
           sh './downloadsrccode.sh'
         }
