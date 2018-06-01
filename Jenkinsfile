@@ -42,7 +42,7 @@ pipeline {
   }
   post{
     always{
-      junit '/home/jenkins/onboardingui/onboarding/*.xml'
+      junit '/home/jenkins/onboardingui/onboardingsrc/*.xml'
     }
   }
 }
