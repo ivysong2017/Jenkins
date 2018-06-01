@@ -35,11 +35,10 @@ pipeline {
       }
     }
     
-    post{
-      always{
-        junit '/home/jenkins/onboardingui/onboarding/*.xml'
-      }
+  }
+  post{
+    always{
+      junit '/home/jenkins/onboardingui/onboarding/*.xml'
     }
-    
   }
 }
