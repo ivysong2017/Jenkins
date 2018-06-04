@@ -23,7 +23,7 @@ pipeline {
       agent{
         dockerfile{
           //the -v argument is to make docker inside docker container have enough privilege to run
-          filename 'SeleniumTestDockerfile'
+          filename '/home/jenkins/onboardingui/SeleniumTestDockerfile'
           args '-u root:root -v "/var/run/docker.sock:/var/run/docker.sock:rw"'
         }
       }
