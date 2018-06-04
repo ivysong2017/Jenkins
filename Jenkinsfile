@@ -1,6 +1,10 @@
 pipeline {
    
-  agent any
+   agent{
+      docker{
+         args '-u root:root -v "/var/run/docker.sock:/var/run/docker.sock:rw"'
+      }
+   }
   
   environment{
     DB_ENGINE = 'mysql'
@@ -24,8 +28,7 @@ pipeline {
         dockerfile{
           //the -v argument is to make docker inside docker container have enough privilege to run
           filename 'SeleniumTestDockerfile'
-          dir '/home/jenkins/onboardingui'
-          args '-u root:root -v "/var/run/docker.sock:/var/run/docker.sock:rw"'
+          dir '/home/jenkins/onboardingui'          
         }
       }
       steps {
