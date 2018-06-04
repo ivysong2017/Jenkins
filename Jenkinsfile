@@ -36,7 +36,7 @@ pipeline {
           
           sh '''
           cd /home/jenkins/onboardingui
-          docker build ./
+          docker build /home/jenkins/onboardingui/.
           '''
         }
       }
